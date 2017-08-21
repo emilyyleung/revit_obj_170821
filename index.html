@@ -1,0 +1,279 @@
+<html>
+
+<head>
+    <script src="https://aframe.io/releases/0.6.1/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="https://rawgit.com/mayognaise/aframe-mouse-cursor-component/master/dist/aframe-mouse-cursor-component.min.js"></script>
+
+    <script src="data.js"></script>
+
+    <script src="script.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 14px;
+        }
+        
+        canvas {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .sidebar {
+            list-style-type: none;
+            background-color: #000;
+            width: 230px;
+            height: 100%;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            text-align: left;
+            position: absolute;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            transition: 1s ease;
+        }
+        
+        .sidebar a {
+            text-decoration: none;
+            color: white;
+            transition: 1s ease;
+            font-weight: bold;
+        }
+        
+        .sidebar li {
+            text-indent: 20px;
+            line-height: 40px;
+            transition: 0.5s ease;
+        }
+        
+        .sidebar li:hover {
+            background-color: #777;
+            cursor: pointer;
+        }
+        
+        .sidebar>.sidebar-brand {
+            height: 65px;
+            font-size: 18px;
+            line-height: 60px;
+        }
+        
+        .meta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            z-index: 1;
+            background: rgba(0, 30, 0, .5);
+            padding: 1px 5px;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 10px;
+            color: #aaa;
+        }
+        
+        .meta a {
+            color: #bbb;
+        }
+        
+        .popup_1, .popup_2, .popup_3, .popup_4 {
+            position: relative;
+            top: 0;
+            right: 0;
+            padding: 0px, 0px;
+            color: #eee;
+            font-size: 10px;
+            background-color: rgba(0, 0, 0, .5);
+            
+            text-align: left;
+            padding-left: 20px;
+            padding-right: 20px;
+            font-size: 12px;
+        }
+        
+        .text {
+            text-align: absolute;
+        }
+        
+        .sidebar div:hover {
+            background-color: #777;
+            cursor: pointer;
+            transition: 0.5s ease;
+        }
+        
+       /* .popup>.text {
+            text-align: left;
+            padding-left: 20px;
+            padding-right: 20px;
+            font-size: 12px;
+        } */
+        
+        .words {
+            position: fixed;
+            top: 0;
+            right: 0;
+            z-index: 1;
+            background: rgba(0, 30, 0, .5);
+            padding: 0px 0px;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 20px;
+            color: #aaa;
+        }
+        
+        .words a {
+            color: #bbb;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <a-scene>
+
+        <!-- ASSETS -->
+        <a-assets>
+            <a-asset-item id="obj-1" src="reference/SAMPLE_C-TOPO.obj"></a-asset-item>
+            <a-asset-item id="obj-2" src="reference/SAMPLE_A-ROOF.obj"></a-asset-item>
+            <a-asset-item id="obj-3" src="reference/SAMPLE_P-SANR-FIXT.obj"></a-asset-item>
+            <a-asset-item id="obj-4" src="reference/SAMPLE_A-GLAZ-CURT.obj"></a-asset-item>
+            <a-asset-item id="obj-5" src="reference/SAMPLE_A-GLAZ-CWMG.obj"></a-asset-item>
+            <a-asset-item id="obj-6" src="reference/SAMPLE_A-GLAZ.obj"></a-asset-item>
+            <a-asset-item id="obj-7" src="reference/SAMPLE_A-FLOR-HRAL.obj"></a-asset-item>
+            <a-asset-item id="obj-8" src="reference/SAMPLE_Q-CASE.obj"></a-asset-item>
+            <a-asset-item id="obj-9" src="reference/SAMPLE_I-FURN.obj"></a-asset-item>
+            <a-asset-item id="obj-10" src="reference/SAMPLE_E-LITE-EQPM.obj"></a-asset-item>
+            <a-asset-item id="obj-11" src="reference/SAMPLE_E-ELEC-EQPM.obj"></a-asset-item>
+            <a-asset-item id="obj-12" src="reference/SAMPLE_A-CLING.obj"></a-asset-item>
+            <a-asset-item id="obj-13" src="reference/SAMPLE_S-STRS.obj"></a-asset-item>
+            <a-asset-item id="obj-14" src="reference/SAMPLE_S-FNDN.obj"></a-asset-item>
+            <a-asset-item id="obj-15" src="reference/SAMPLE_C-BLDG-PADS.obj"></a-asset-item>
+            <a-asset-item id="obj-16" src="reference/SAMPLE_I-WALL.obj"></a-asset-item>
+            <a-asset-item id="obj-17" src="reference/SAMPLE_A-WALL.obj"></a-asset-item>
+            <a-asset-item id="obj-18" src="reference/SAMPLE_A-FLOR.obj"></a-asset-item>
+            <a-asset-item id="obj-19" src="reference/SAMPLE_A-DETL-GENF.obj"></a-asset-item>
+            <a-asset-item id="obj-20" src="reference/SAMPLE_L-PLNT.obj"></a-asset-item>
+            <a-asset-item id="obj-21" src="reference/SAMPLE_S-COLS.obj"></a-asset-item>
+            <a-asset-item id="obj-22" src="reference/SAMPLE_L-SITE.obj"></a-asset-item>
+            <a-asset-item id="obj-23" src="reference/SAMPLE_A-DOOR.obj"></a-asset-item>
+            <a-asset-item id="obj-24" src="reference/SAMPLE_A-GENIM.obj"></a-asset-item>
+            <a-asset-item id="obj-25" src="reference/SAMPLE_I-FURN-PNLS.obj"></a-asset-item>
+        </a-assets>
+
+        <!-- LINK -->
+        <a-entity class="link"></a-entity>
+
+        <!-- CAMERA -->
+
+        <a-camera position="-5 3 -7" rotation="0 -45 0">
+            <a-cursor id="cursor" color="#FF0000"></a-cursor>
+
+        </a-camera>
+
+        <!-- SKY -->
+        <a-sky color="#FFF"></a-sky>
+
+        <!-- OBJ MODELS -->
+        <a-entity id="target">
+            <a-obj-model src="#obj-1" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            </a-obj-model>
+            <a-obj-model src="#obj-2" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            </a-obj-model>
+            <a-obj-model src="#obj-3" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            </a-obj-model>
+            <a-obj-model src="#obj-4" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            </a-obj-model>
+            <a-obj-model src="#obj-5" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            </a-obj-model>
+            <a-obj-model src="#obj-6" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            </a-obj-model>
+            <a-obj-model src="#obj-7" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            </a-obj-model>
+            <a-obj-model src="#obj-8" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            </a-obj-model>
+            <a-obj-model src="#obj-9" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            </a-obj-model>
+            <a-obj-model src="#obj-10" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            </a-obj-model>
+            <a-obj-model src="#obj-11" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            </a-obj-model>
+            <a-obj-model src="#obj-12" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            </a-obj-model>
+            <a-obj-model src="#obj-13" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            </a-obj-model>
+            <a-obj-model src="#obj-14" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            </a-obj-model>
+            <a-obj-model src="#obj-15" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            </a-obj-model>
+            <a-obj-model src="#obj-16" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            </a-obj-model>
+            <a-obj-model src="#obj-17" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            </a-obj-model>
+            <a-obj-model src="#obj-18" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            </a-obj-model>
+            <a-obj-model src="#obj-19" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            </a-obj-model>
+            <a-obj-model src="#obj-20" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            </a-obj-model>
+            <a-obj-model src="#obj-21" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            </a-obj-model>
+            <a-obj-model src="#obj-22" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            </a-obj-model>
+            <a-obj-model src="#obj-23" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            </a-obj-model>
+            <a-obj-model src="#obj-24" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            </a-obj-model>
+            <a-obj-model src="#obj-25" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            </a-obj-model>
+            <!-- //color: OuterSpace -->
+        </a-entity>
+
+    </a-scene>
+    
+    <div class="words"><a></a></div>
+
+    <ul class="sidebar">
+
+        <li class="sidebar-brand"><a href="">PROJECT INFO</a></li>
+        <li><a href="#">NAME OF OBJECT</a></li>
+        <br>
+        
+        <div class="popup_1">
+            <div class="text"></div>
+        </div>
+
+        <li><a href="#">COST</a></li>
+        <br>
+        <div class="popup_2">
+            <div class="text"></div>
+        </div>
+        <li><a href="#">MATERIAL</a></li>
+        <br>
+        <div class="popup_3">
+            <div class="text"></div>
+        </div>
+        <li><a href="#">DIMENSIONS</a></li>
+        <br>
+        <div class="popup_4">
+            <div class="text"></div>
+        </div>
+
+    </ul>
+
+    <div class="meta">
+        Made by <a href="https://twitter.com/emily_y_leung" target="_blank">@emily_y_leung</a> using <a href="https://aframe.io" target="_blank">A-Frame</a><br>//
+        <a href="https://medium.com/scratch-pad-3201-3202" target="_blank">see Medium Publication</a>
+    </div>
+
+    <br>
+    <div class="popup-dimensions">
+        <div class="text"></div>
+    </div>
+
+</body>
+
+</html>
