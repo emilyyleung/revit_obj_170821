@@ -3,7 +3,7 @@
 <head>
     <script src="https://aframe.io/releases/0.6.1/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <script src="https://rawgit.com/mayognaise/aframe-mouse-cursor-component/master/dist/aframe-mouse-cursor-component.min.js"></script>
@@ -11,6 +11,7 @@
     <script src="data.js"></script>
 
     <script src="script.js"></script>
+    <!-- <script src="script_button.js"></script> -->
 
     <style>
         body {
@@ -80,7 +81,11 @@
             color: #bbb;
         }
         
-        .popup_1, .popup_2, .popup_3, .popup_4 {
+        .popup_1,
+        .popup_2,
+        .popup_3,
+        .popup_4, 
+        .popup_5 {
             position: relative;
             top: 0;
             right: 0;
@@ -88,7 +93,6 @@
             color: #eee;
             font-size: 10px;
             background-color: rgba(0, 0, 0, .5);
-            
             text-align: left;
             padding-left: 20px;
             padding-right: 20px;
@@ -104,8 +108,7 @@
             cursor: pointer;
             transition: 0.5s ease;
         }
-        
-       /* .popup>.text {
+        /* .popup>.text {
             text-align: left;
             padding-left: 20px;
             padding-right: 20px;
@@ -126,6 +129,117 @@
         
         .words a {
             color: #bbb;
+        }
+        
+        #blue_btn {
+            position: fixed;
+            width: 100px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            border: 1px solid black;
+            border-radius: 3px;
+            cursor: pointer;
+            display: block;
+            font-family: sans-serif;
+            left: 20px;
+            top: 400px;
+            background: white;
+            color: deepskyblue;
+        }
+        
+        #blue_btn:hover {
+            background: #333;
+            color: white;
+        }
+        
+        #blue_btn:active {
+            background: #035E7B;
+        }
+        
+        #blue_bg {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            opacity: .7;
+            background: #282828;
+            display: none;
+        }
+        
+        #green_btn {
+            position: fixed;
+            width: 100px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            border: 1px solid black;
+            border-radius: 3px;
+            cursor: pointer;
+            display: block;
+            font-family: sans-serif;
+            left: 20px;
+            top: 475px;
+            background: white;
+            color: #78C091;
+        }
+        
+        #green_btn:hover {
+            background: #333;
+            color: white;
+        }
+        
+        #green_btn:active {
+            background: #78C091;
+        }
+        
+        #green_bg {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            opacity: .7;
+            background: #282828;
+            display: none;
+        }
+        
+        #orange_btn {
+            position: fixed;
+            width: 100px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            border: 1px solid black;
+            border-radius: 3px;
+            cursor: pointer;
+            display: block;
+            font-family: sans-serif;
+            left: 20px;
+            top: 550px;
+            background: white;
+            color: #FFBA49;
+        }
+        
+        #orange_btn:hover {
+            background: #333;
+            color: white;
+        }
+        
+        #orange_btn:active {
+            background: #FFBA49;
+        }
+        
+        #orange_bg {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            opacity: .7;
+            background: #282828;
+            display: none;
         }
 
     </style>
@@ -179,69 +293,71 @@
 
         <!-- OBJ MODELS -->
         <a-entity id="target">
-            <a-obj-model src="#obj-1" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            <a-obj-model change_blue src="#obj-1" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" object-info-on-click="color: #FFF00F">
             </a-obj-model>
-            <a-obj-model src="#obj-2" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            <a-obj-model src="#obj-2" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" object-info-on-click="color: #FFF00F">
             </a-obj-model>
-            <a-obj-model src="#obj-3" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            <a-obj-model src="#obj-3" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" object-info-on-click="color: #FFF00F">
             </a-obj-model>
-            <a-obj-model src="#obj-4" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            <a-obj-model src="#obj-4" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" object-info-on-click="color: #FFF00F">
             </a-obj-model>
-            <a-obj-model src="#obj-5" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            <a-obj-model src="#obj-5" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" object-info-on-click="color: #FFF00F">
             </a-obj-model>
-            <a-obj-model src="#obj-6" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            <a-obj-model src="#obj-6" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" object-info-on-click="color: #FFF00F">
             </a-obj-model>
-            <a-obj-model src="#obj-7" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            <a-obj-model src="#obj-7" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" object-info-on-click="color: #FFF00F">
             </a-obj-model>
-            <a-obj-model src="#obj-8" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            <a-obj-model src="#obj-8" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" object-info-on-click="color: #FFF00F">
             </a-obj-model>
-            <a-obj-model src="#obj-9" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            <a-obj-model src="#obj-9" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" object-info-on-click="color: #FFF00F">
             </a-obj-model>
-            <a-obj-model src="#obj-10" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            <a-obj-model src="#obj-10" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" object-info-on-click="color: #FFF00F">
             </a-obj-model>
-            <a-obj-model src="#obj-11" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            <a-obj-model src="#obj-11" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" object-info-on-click="color: #FFF00F">
             </a-obj-model>
-            <a-obj-model src="#obj-12" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            <a-obj-model src="#obj-12" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" object-info-on-click="color: #FFF00F">
             </a-obj-model>
-            <a-obj-model src="#obj-13" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            <a-obj-model src="#obj-13" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" object-info-on-click="color: #FFF00F">
             </a-obj-model>
-            <a-obj-model src="#obj-14" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            <a-obj-model src="#obj-14" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" object-info-on-click="color: #FFF00F">
             </a-obj-model>
-            <a-obj-model src="#obj-15" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            <a-obj-model src="#obj-15" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" object-info-on-click="color: #FFF00F">
             </a-obj-model>
-            <a-obj-model src="#obj-16" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            <a-obj-model src="#obj-16" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" object-info-on-click="color: #FFF00F">
             </a-obj-model>
-            <a-obj-model src="#obj-17" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            <a-obj-model src="#obj-17" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" object-info-on-click="color: #FFF00F">
             </a-obj-model>
-            <a-obj-model src="#obj-18" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            <a-obj-model src="#obj-18" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" object-info-on-click="color: #FFF00F">
             </a-obj-model>
-            <a-obj-model src="#obj-19" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            <a-obj-model src="#obj-19" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" object-info-on-click="color: #FFF00F">
             </a-obj-model>
-            <a-obj-model src="#obj-20" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            <a-obj-model src="#obj-20" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" object-info-on-click="color: #FFF00F">
             </a-obj-model>
-            <a-obj-model src="#obj-21" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            <a-obj-model src="#obj-21" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" object-info-on-click="color: #FFF00F">
             </a-obj-model>
-            <a-obj-model src="#obj-22" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            <a-obj-model src="#obj-22" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" object-info-on-click="color: #FFF00F">
             </a-obj-model>
-            <a-obj-model src="#obj-23" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            <a-obj-model src="#obj-23" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" object-info-on-click="color: #FFF00F">
             </a-obj-model>
-            <a-obj-model src="#obj-24" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            <a-obj-model src="#obj-24" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" object-info-on-click="color: #FFF00F">
             </a-obj-model>
-            <a-obj-model src="#obj-25" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" change-color-on-hover="color: #FFF00F">
+            <a-obj-model src="#obj-25" position="5 0 -15" scale="0.001 0.001 0.001" rotation="-90 0 -360" color="#424B54" object-info-on-click="color: #FFF00F">
             </a-obj-model>
             <!-- //color: OuterSpace -->
         </a-entity>
 
     </a-scene>
-    
-    <div class="words"><a></a></div>
+
+    <div class="words">
+        <a></a>
+    </div>
 
     <ul class="sidebar">
 
         <li class="sidebar-brand"><a href="">PROJECT INFO</a></li>
         <li><a href="#">NAME OF OBJECT</a></li>
         <br>
-        
+
         <div class="popup_1">
             <div class="text"></div>
         </div>
@@ -261,17 +377,25 @@
         <div class="popup_4">
             <div class="text"></div>
         </div>
+        <li><a href="#">CHANGE COLOR</a></li>
 
     </ul>
+    
+    <div id="blue_btn">BLUE</div>
+            <div id="blue_bg"></div>
+    <br>
+    
+    <div id="green_btn">GREEN</div>
+            <div id="green_bg"></div>
+    
+    <br>
+    
+    <div id="orange_btn">GREEN</div>
+            <div id="green_bg"></div>
 
     <div class="meta">
         Made by <a href="https://twitter.com/emily_y_leung" target="_blank">@emily_y_leung</a> using <a href="https://aframe.io" target="_blank">A-Frame</a><br>//
         <a href="https://medium.com/scratch-pad-3201-3202" target="_blank">see Medium Publication</a>
-    </div>
-
-    <br>
-    <div class="popup-dimensions">
-        <div class="text"></div>
     </div>
 
 </body>
